@@ -1,0 +1,19 @@
+@media (max-width: 768px) {
+    .Button{
+        font-size: 14px;
+    }
+
+    .MenuItem{
+        font-size: 14px;
+    }
+}
+@media (max-width: 480px) {
+    .Button{
+        font-size: 12px;
+    }
+
+    .MenuItem{
+        font-size: 12px;
+       
+    }
+}

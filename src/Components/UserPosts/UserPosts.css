@@ -1,0 +1,297 @@
+
+.post {
+    position: relative;
+    width: 600px;
+    height: auto;  
+    background-color: rgb(237, 248, 248);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin: 25px;
+    
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 0;
+    border-radius: 15px;
+  }
+
+  .TitlendImage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgb(183, 193, 209);
+  }
+
+   .postHeader {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    color: rgb(7, 36, 53);
+    font-family: 'Inconsolata', monospace;
+    flex: 50%;
+  }   
+
+  .postImage{
+    height: 200px;
+    width: 300px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    
+  }
+  .post .postTextContainer {
+    font-family: 'Open Sans', sans-serif;
+    word-wrap: break-word;
+    height: auto;
+    max-height: 400px;
+    width: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+  }
+
+  .AllComments{
+    height: auto;
+    max-height: 220px;
+    width: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+  }
+  
+  
+  .Aurthor{
+    font-family: 'Pacifico', cursive;
+    margin-bottom: 5px;
+  }
+  
+  .Time {
+    margin-bottom: 2px;
+    font-family: 'Pacifico', cursive;
+  }
+
+
+  .LikeandCommentDeleteContainer{
+   
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    
+  }
+
+  .LikeIcon {
+    margin-right: 7px;
+    margin-top: 2px;
+  }
+
+  .commentsIcon {
+    margin-left: 15px;
+    margin-top: 2px;
+    
+  }
+
+  .DeleteButton {
+    margin-left: auto;
+  }
+  
+
+  .UpdateButton Button{
+    border: none;
+    background: none;
+    font-size: 30px;
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    top: 20px;
+  }
+
+
+  @media (max-width: 760px) {
+    .post {
+      
+      width: 460px;
+      height: auto;
+      margin: 15px;
+      
+      padding-left: 10px;
+      padding-right: 5px;
+      padding-top: 5px;
+      padding-bottom: 0;
+    
+    }
+  
+     .postHeader {
+      font-size: 14px;
+ 
+   
+      width: 100%;
+     
+      flex: 50%;
+    }   
+    .postImage{
+      height: 150px;
+      width: 200px;
+      object-fit: cover;
+      margin-bottom: 10px;
+      
+    }
+  
+    .post .postTextContainer {
+ 
+      font-size: 14px;
+ ;
+      height: auto;
+      max-height: 400px;
+      width: 100%;
+      overflow: hidden;
+      overflow-y: auto;
+    }
+  
+    .AllComments{
+      height: auto;
+      max-height: 220px;
+      width: 100%;
+      overflow: hidden;
+      overflow-y: auto;
+    }
+    
+    
+    .Aurthor{
+    
+    
+      font-size: 14px;
+    }
+    
+    .Time {
+      font-size: 14px;
+     
+    }
+  
+  
+    .LikeandCommentDeleteContainer{
+      font-size: 12px;
+    
+      cursor: pointer;
+      
+    }
+  
+    .LikeIcon {
+      margin-right: 7px;
+      margin-top: 2px;
+    }
+  
+    .commentsIcon {
+      margin-left: 15px;
+      margin-top: 2px;
+      
+    }
+  
+    .DeleteButton {
+      margin-left: auto;
+    }
+    
+  
+    .UpdateButton Button{
+     
+      font-size: 22px;
+      cursor: pointer;
+      position: absolute;
+      right: 15px;
+      top: 10px;
+    }
+  
+  }
+
+
+
+  
+  @media (max-width: 480px) {
+    .post {
+      
+      width: 360px;
+      height: auto;
+      margin: 15px;
+      
+      padding-left: 10px;
+      padding-right: 5px;
+      padding-top: 5px;
+      padding-bottom: 0;
+     
+    }
+  
+     .postHeader {
+      font-size: 12px;
+     
+      width: 100%;
+     
+     
+    }   
+  
+    .post .postTextContainer {
+     
+      font-size: 12px;
+     
+      height: auto;
+      max-height: 400px;
+      width: 100%;
+      overflow: hidden;
+      overflow-y: auto;
+    }
+    .postImage{
+      height: 100px;
+      width: 200px;
+      object-fit: cover;
+      margin-bottom: 10px;
+      
+    }
+    .AllComments{
+      height: auto;
+      max-height: 220px;
+      width: 100%;
+      overflow: hidden;
+      overflow-y: auto;
+    }
+    
+    
+    .Aurthor{
+     
+      font-size: 12px;
+    }
+    
+    .Time {
+      font-size: 12px;
+      
+    }
+  
+  
+    .LikeandCommentDeleteContainer{
+      
+     
+      cursor: pointer;
+      
+    }
+  
+    .LikeIcon {
+      margin-right: 7px;
+      margin-top: 2px;
+    }
+  
+    .commentsIcon {
+      margin-left: 15px;
+      margin-top: 2px;
+      
+    }
+  
+    .DeleteButton {
+      margin-left: auto;
+    }
+    
+  
+    .UpdateButton Button{
+     
+      font-size: 22px;
+      cursor: pointer;
+      position: absolute;
+      right: 15px;
+      top: 10px;
+    }
+  
+  }
+  

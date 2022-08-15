@@ -1,0 +1,226 @@
+
+
+.RegisterrContainer {
+  margin-top: 120px;
+  font-family: 'Pacifico', cursive;
+  width: 500px;
+  height: auto;
+  padding: 20px;
+  background-color: rgb(121, 95, 95);
+  border-radius: 12px;
+  color: rgb(0, 0, 0);
+  display: flex;
+  flex-direction: column;
+}
+
+.RegisterrContainer h1 {
+  
+  text-align: center;
+  font-size: 35px;
+}
+
+.Regerror{
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-family: 'Playfair Display', serif;
+  font-size: 21px;
+  color: rgb(129, 19, 19);
+}
+
+
+.RegisterrContainer label {
+  margin-top: 10px;
+  font-size: 20px;
+}
+.RegisterrContainer .RegInputContainer {
+  
+  display: flex;
+  flex-direction: column;
+}
+
+.RegInputContainer input {
+  height: 40px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  
+}
+
+.RegisterrContainer button {
+  font-family: 'Pacifico', cursive;
+  margin-top: 20px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  
+}
+
+.RegisterrContainer button:hover {
+  color: rgb(39, 27, 27);
+  border-bottom: 2px solid rgb(39, 27, 27);
+}
+
+.RegisterText{
+  display: flex;
+  align-items: center;
+  font-size: 21px;
+  
+}
+
+
+.LoginButton {
+  margin-left: 20px;
+  margin-bottom: 20px;
+  width: 50%;
+}
+
+@media(max-width: 760px) {
+  
+  .RegisterrContainer {
+    width: 400px;
+    height: auto;
+    padding: 20px;
+  
+  }
+  
+  .RegisterrContainer h1 {
+    
+    text-align: center;
+    font-size: 30px;
+  }
+  
+  .Regerror{
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 20px;
+   
+  }
+  
+  .RegisterrContainer label {
+    margin-top: 10px;
+    font-size: 19px;
+  }
+  
+  .RegInputContainer input {
+    height: 35px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    
+  }
+  
+  .RegisterrContainer button {
+    margin-top: 20px;
+    height: 35px;
+    font-size: 14px;
+    
+  }
+  
+  .RegisterText{
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    
+  }
+  
+  .LoginButton {
+    margin-left: 20px;
+    margin-bottom: 20px;
+    width: 50%;
+    
+  }
+  
+  .RegisterText{
+    font-size: 20px;
+  }
+  
+  .RegisterrContainer Button {
+    font-size: 13px;
+  }
+  
+}
+  
+
+@media(max-width: 480px) {
+  
+.RegisterrContainer {
+  width: 300px;
+  height: auto;
+  padding: 20px;
+
+}
+
+.RegisterrContainer h1 {
+  
+  text-align: center;
+  font-size: 28px;
+}
+
+.Regerror{
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: rgb(129, 19, 19);
+}
+
+
+.RegisterrContainer label {
+  margin-top: 10px;
+  font-size: 17px;
+}
+.RegisterrContainer .RegInputContainer {
+  
+  display: flex;
+  flex-direction: column;
+}
+
+.RegInputContainer input {
+  height: 30px;
+  font-size: 13px;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  
+}
+
+.RegisterrContainer button {
+  font-family: 'Pacifico', cursive;
+  margin-top: 20px;
+  height: 30px;
+  font-size: 14px;
+  
+}
+
+
+.RegisterText{
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  
+}
+
+
+.LoginButton {
+  margin-left: 20px;
+  margin-bottom: 20px;
+  width: 50%;
+  
+}
+
+.RegisterText{
+  font-size: 18px;
+}
+
+.RegisterrContainer Button {
+  font-size: 11px;
+}
+
+}

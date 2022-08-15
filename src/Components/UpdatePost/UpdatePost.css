@@ -1,0 +1,208 @@
+.UpdatePostBG {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(21, 24, 23, 0.829);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+    
+  .UpdatePostContainer {
+    font-family: 'Pacifico', cursive;
+    width: 500px;
+    height: auto;
+    padding: 20px;
+    background-color: rgb(121, 95, 95);
+    border-radius: 12px;
+    color: rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .UpdatePostContainer h1 {
+    
+    text-align: center;
+    font-size: 40px;
+  }
+  
+  .UpdatePostContainer label {
+    font-size: 25px;
+  }
+  .UpdatePostContainer .UpdatePostInput {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .UpdatePostInput input,
+  .UpdatePostInput textarea {
+    font-size: 18px;
+    border: none;
+    border-radius: 2px;
+    padding: 5px;
+  }
+  
+  .UpdatePostInput input {
+    height: 40px;
+  }
+  .UpdatePostInput textarea {
+    height: 140px;
+  }
+  .EditImagendIcon{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .EditImage{
+    font-size: 22px !important;
+    color:rgb(0, 0, 0);
+    margin-bottom: 0px !important;
+  }
+  .EditImageIcon{
+    margin-top: 0px;
+    font-size: 20px !important;
+  }
+  .UpdatePostContainer button {
+    font-family: 'Pacifico', cursive;
+    margin-top: 15px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    
+  }
+  input,
+  textarea {
+    margin-top: 5px;
+  }
+
+  .UpdatePostContainer button:hover {
+    color: rgb(39, 27, 27);
+    border-bottom: 2px solid rgb(39, 27, 27);
+  }
+  
+  @media(max-width: 760px) {
+    .UpdatePostContainer {
+      width: 400px;
+      height: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .UpdatePostContainer h1 {
+      
+      text-align: center;
+      font-size: 32px;
+    }
+    
+    .UpdatePostContainer label {
+      font-size: 22px;
+    }
+    .UpdatePostContainer .UpdatePostInput {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .UpdatePostInput input,
+    .UpdatePostInput textarea {
+      font-size: 16px;
+      border: none;
+      border-radius: 2px;
+      padding: 5px;
+    }
+    
+    .UpdatePostInput input {
+      height: 40px;
+    }
+    .UpdatePostInput textarea {
+      height: 140px;
+    }
+    .EditImage{
+      font-size: 20px !important;
+      color:rgb(0, 0, 0)
+    }
+    .EditImageIcon{
+      font-size: 18px !important;
+    }
+    .UpdatePostContainer button {
+      margin-top: 20px;
+      height: 40px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      
+    }
+    input,
+    textarea {
+      margin-top: 5px;
+    }
+  
+  
+  }
+
+  @media(max-width: 480px) {
+    .UpdatePostContainer {
+      width: 300px;
+      height: auto;
+      padding: 17px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .UpdatePostContainer h1 {
+      
+      text-align: center;
+      font-size: 28px;
+    }
+    
+    .UpdatePostContainer label {
+      font-size: 20px;
+    }
+    .UpdatePostContainer .UpdatePostInput {
+      margin-top: 22px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .UpdatePostInput input,
+    .UpdatePostInput textarea {
+      font-size: 14px;
+      border: none;
+      border-radius: 2px;
+      padding: 5px;
+    }
+    
+    .UpdatePostInput input {
+      height: 30px;
+    }
+    .UpdatePostInput textarea {
+      height: 100px;
+    }
+    .EditImage{
+      font-size: 18px !important;
+      color:rgb(0, 0, 0)
+    }
+    .EditImageIcon{
+      font-size: 16px !important;
+    }
+    .UpdatePostContainer button {
+      margin-top: 20px;
+      height: 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      
+    }
+    input,
+    textarea {
+      margin-top: 5px;
+    }
+  
+  
+  }

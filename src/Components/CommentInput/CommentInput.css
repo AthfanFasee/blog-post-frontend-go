@@ -1,0 +1,29 @@
+.CommentInputContainer{
+    padding: 5px;
+    display:flex;
+    align-items:center;
+}
+.Input{
+    width: 520px;
+   
+    
+}
+.Button{
+    cursor: pointer;
+}
+
+@media (max-width: 760px) {
+    .Input{
+        width: 390px;
+       
+        
+    }
+}
+
+@media (max-width: 480px) {
+    .Input{
+        width: 290px;
+     
+    }
+    
+}
