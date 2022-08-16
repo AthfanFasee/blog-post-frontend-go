@@ -11,17 +11,21 @@ import { useNavigate } from 'react-router-dom';
 import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice';
 import './ProfileButton.css';
 import {useSelector, useDispatch} from 'react-redux';
-import {updateUserIDParam} from '../../../features/UserIDParam';
+import {updateUserIDParam, updatePageParam} from '../../../features/Params';
+import {useLazyGetPostsQuery} from '../../../services/PostsApi';
 
 export default function ProfileButton() {
-
-
-  const UserIDParam = useSelector((state) => state.UserIDParam.value);
   const dispatch = useDispatch();
+
+  const UserIDParam = useSelector((state) => state.Params.value.userId);
+  const page = useSelector((state) => state.Params.value.page);
+  const sort = useSelector((state) => state.Params.value.sort);
+
+  const [triggerGetPostsQuery] = useLazyGetPostsQuery();
 
   const userID = localStorage.getItem('userID');
   const userName = localStorage.getItem('userName');
-
+  
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -31,7 +35,17 @@ export default function ProfileButton() {
     setAnchorEl(null);
   };
 
-
+  const myPostsButtonOnClick = () => {
+    dispatch(updateUserIDParam(userID))
+    localStorage.setItem("OldPageValue", page);
+    dispatch(updatePageParam(1))
+  }
+  const showAllPostsButtonOnClick = () => {
+    dispatch(updateUserIDParam(" "))
+    dispatch(updatePageParam(Number(localStorage.getItem("OldPageValue"))))
+    triggerGetPostsQuery({page, sort, UserIDParam}, {preferCacheValue: false})
+    localStorage.removeItem("OldPageValue")
+  }
 
   const navigate = useNavigate()
 
@@ -98,11 +112,11 @@ export default function ProfileButton() {
        
 
 
-        {!UserIDParam && <MenuItem className="Menu" onClick={() => dispatch(updateUserIDParam(`&id=${userID}`))}>
+        {!UserIDParam && <MenuItem className="Menu" onClick={myPostsButtonOnClick}>
           <LocalPostOfficeIcon className="PostsIcon" /> My Posts
         </MenuItem>}
         {UserIDParam&&
-        <MenuItem className="Menu" onClick={() => dispatch(updateUserIDParam(""))}>
+        <MenuItem className="Menu" onClick={showAllPostsButtonOnClick}>
         <LocalPostOfficeIcon className="PostsIcon" /> Show All Posts
         </MenuItem>
         }

@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 
-const URL = 'https://blog-posts-1699.herokuapp.com/api/v1/auth'
+const URL = process.env.REACT_APP_API_PATH + '/api/v1/auth'
 
 const authApi = createApi({
   reducerPath: 'authApi',

@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const URL = 'https://blog-posts-1699.herokuapp.com/api/v1/posts'
+const URL = process.env.REACT_APP_API_PATH + '/api/v1/posts'
 const token = localStorage.getItem('token');
 
 
@@ -11,7 +11,7 @@ const likeAndCommentApi = createApi({
 
     addLike: builder.mutation({
       query: ({postID, userID}) => ({
-        url: `/liked/${postID}`,
+        url: `/like/${postID}`,
         method: 'PATCH',
         body: {id: userID},
         headers: {
@@ -22,7 +22,7 @@ const likeAndCommentApi = createApi({
 
     disLike: builder.mutation({
       query: ({postID, userID}) => ({
-        url: `/disliked/${postID}`,
+        url: `/dislike/${postID}`,
         method: 'PATCH',
         body: {id: userID},
         headers: {
@@ -36,10 +36,10 @@ const likeAndCommentApi = createApi({
     }),
     
     addComment: builder.mutation({
-      query: ({commentInput, id}) => ({
-        url: `/comments`,
+      query: ({commentInput, postID}) => ({
+        url: `/comment`,
         method: 'POST',
-        body: {Text:commentInput, Post:id},
+        body: {text:commentInput, post:postID},
         headers: {
           Authorization: `Bearer ${token}`
         },
@@ -48,7 +48,7 @@ const likeAndCommentApi = createApi({
 
     deleteComment: builder.mutation({
       query: ({id}) => ({
-        url: `/comments/${id}`,
+        url: `/comment/${id}`,
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`

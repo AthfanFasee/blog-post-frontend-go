@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-const initialStateValues = { newtitle: "", newpostText: ""}
+const initialStateValues = { newtitle: "", newpostText: "", newreadTime : 0}
 
 export const updateInputValuesSlice = createSlice({
     name: 'update',

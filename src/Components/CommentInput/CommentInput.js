@@ -8,7 +8,7 @@ import CommentPopOver from './CommentPopOver/CommentPopOver';
 
 const ariaLabel = { 'aria-label': 'description' };
 
-export default function CommentInput({addComment, id, commentInput, setCommentInput}) {
+export default function CommentInput({addComment, postID, commentInput, setCommentInput}) {
 
 
 
@@ -24,12 +24,12 @@ export default function CommentInput({addComment, id, commentInput, setCommentIn
         noValidate
         autoComplete="off"
         >
-        <Input className="Input" placeholder="Comment..." inputProps={ariaLabel} value={commentInput} onChange={(event) => setCommentInput(event.target.value)}/>
+        <Input className="Input" placeholder="200 Characters max" inputProps={ariaLabel} value={commentInput} onChange={(event) => setCommentInput(event.target.value)}/>
         </Box>
 
         {/* Showing PopUp to Login if not Logged in */}
         {!token ? <CommentPopOver /> : 
-        <IconButton data-testid='IconButton' className="Button" onClick={() => addComment(id)} disabled={!commentInput} color="primary">
+        <IconButton data-testid='IconButton' className="Button" onClick={() => addComment(postID)} disabled={!commentInput} color="primary">
         <SendIcon  />
       </IconButton>
         }     

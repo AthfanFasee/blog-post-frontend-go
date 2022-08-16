@@ -15,23 +15,20 @@ import DefaultPostImg from './DefaultPostImg.png';
 
 
 function UserPosts({post}) {
-  
-    const userID = localStorage.getItem('userID');
+    const userID = Number(localStorage.getItem('userID'));
     const token = localStorage.getItem('token');
 
     //Either Updated Post or Default Post is saved here to live render when post is edited
     const [Post, setPost] = useState(post);
 
-    //to save comments data
     const [commentData, setCommentData] = useState("");
-    
-    //to save commentInput value
+  
     const [commentInput, setCommentInput] = useState("");
 
     //to Render Comments Section
     const [isComments, setIsComments] = useState(false);
     
-    //Modifying Time which comes from DB
+    //Modifying Time
     let time = Post.createdAt.split('T').join(', ');
     time = time.slice(0, 17);
 
@@ -40,7 +37,7 @@ function UserPosts({post}) {
     
     //Conditionally Rendering the Original Post or the Updated Post if the Post got Updated
     useEffect(() => {
-      setPost(updatedPost._id === post._id ? updatedPost : post)
+      setPost(updatedPost.id === post.id ? updatedPost : post)
     }, [updatedPost, post])
 
     //Like Button Section
@@ -48,12 +45,12 @@ function UserPosts({post}) {
     const [ triggerDisLikePost] = useDisLikeMutation()
     
     const likePost = async () => {
-        const {data} = await triggerLikePost({postID: Post._id, userID});
+        const {data} = await triggerLikePost({postID: Post.id, userID});
         setPost(data.post)  //Live updating likes count and like icon      
     }
 
     const disLikePost = async () => {
-      const {data} = await triggerDisLikePost({postID: Post._id, userID});
+      const {data} = await triggerDisLikePost({postID: Post.id, userID});
       setPost(data.post);  //Live updating likes count and like icon     
     }
 
@@ -62,10 +59,10 @@ function UserPosts({post}) {
     let likeButton;
     if(!token) {
       likeButton = <LikePopOver />;
-    } else if (!Post.likedBy.includes(userID)) {
-      likeButton = <ThumbUpOffAltIcon fontSize="medium"  onClick ={likePost}/>;
-    } else {
+    } else if (Post?.likedBy?.includes(userID)) {
       likeButton = <ThumbUpAltIcon fontSize="medium" onClick ={disLikePost}/>;
+    } else {
+      likeButton = <ThumbUpOffAltIcon fontSize="medium"  onClick ={likePost}/>;
     }
     
     //Comment Functionality
@@ -74,13 +71,13 @@ function UserPosts({post}) {
     const [triggerDeleteComment] = useDeleteCommentMutation();
 
     const CommentButtonClick = async () => {
-        const {data} = await triggerFetchComments({postID: post._id});
+        const {data} = await triggerFetchComments({postID: post.id});
         setCommentData(data.comments); //This Comment Data state will handle refetching as well      
         setIsComments(true);   
     }
 
-    const addComment = async (id) => {
-        await triggerAddComment({commentInput, id});
+    const addComment = async (postID) => {
+        await triggerAddComment({commentInput, postID});
         CommentButtonClick();
         setCommentInput("");
     }
@@ -94,14 +91,17 @@ function UserPosts({post}) {
     return (        
           <div className="post">
             <div className="TitlendImage">
-            <div className="postHeader"><h1>{Post.title}</h1></div> 
-            <img className="postImage" src={Post.img? Post.img : DefaultPostImg} alt=""/>
+            <div className="TitleandReading">
+            <div className="postHeader"><h1>{Post.title}</h1></div>
+            <h4 className="readTime">({Post.readTime} reading)</h4>
             </div>
+            <img className="postImage" src={Post.img? Post.img : DefaultPostImg} alt=""/>
+          </div>
 
              <div className="postContentContainer">
                   <div className="postTextContainer">{Post.postText}</div>
                   <h4 className="Aurthor">Posted by: {Post.userName}</h4>
-                  <div className="Time">@{time}</div>   
+                  <div className="PostTime">@{time}</div>   
               </div>   
 
               <div className="UpdateButton">
@@ -117,7 +117,7 @@ function UserPosts({post}) {
 
               {/* Showing like button according to if the user alrdy liked the post or not */}           
               <div className="LikeIcon">{likeButton}</div>
-              <p className="likesCount">{Post.likedBy.length}</p> 
+              <p className="likesCount">{Post.likedBy ? Post.likedBy.length : 0}</p> 
 
 
               {/* Conditionally Rendering CommentsIcon */}
@@ -133,12 +133,12 @@ function UserPosts({post}) {
 
 
             {/* If comment Icon is clicked Rendering Commend Input and Comments on Screen */}      
-            {isComments && <CommentInput id={Post._id} addComment={addComment} setCommentInput={setCommentInput} commentInput={commentInput}/>}
+            {isComments && <CommentInput postID={Post.id} addComment={addComment} setCommentInput={setCommentInput} commentInput={commentInput}/>}
             <div className="AllComments">
               
-            {isComments && commentData.map(comment => {
+            {isComments && commentData?.map(comment => {
               return (
-                <div key={comment._id}>
+                <div key={comment.id}>
                   <Comments userID={userID} comment={comment} deleteComment={deleteComment}/>
                 </div>
               )             

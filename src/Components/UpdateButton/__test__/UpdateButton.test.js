@@ -6,8 +6,8 @@ import { HomePageProvider } from '../../../Helper/HomePageContexts/HomePageProvi
 
 
 jest.mock('../../../redux/redux-hooks')
-const post = {_id : 1}
-const updatedPost = {_id:1}
+const post = {id : 1}
+const updatedPost = {id:1}
 
 
 describe('UpdateButton', () => {

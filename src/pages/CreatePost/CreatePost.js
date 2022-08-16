@@ -1,6 +1,6 @@
 import { useEffect, useContext } from "react";
 import {useNavigate} from 'react-router-dom';
-import CreatePostElmnts from "../../Components/CreatePostElements/CreatePostElmnts";
+import CreatePostElmnts from "../../Components/CreatePostForm/CreatePostForm";
 import './CreatePost.css';
 import {CreatePostContext} from '../../Helper/CreatePostContext/CreatePostProvider';
 import {useCreatePostMutation} from '../../services/PostsApi';
@@ -12,18 +12,16 @@ import {
     getDownloadURL,
   } from "firebase/storage";
 
-
-
-
+  
 
 function CreatePost() {
 
-    const { file, title, postText, setError} = useContext(CreatePostContext);
+    const { file, title, postText, readTime,  setError} = useContext(CreatePostContext);
 
     const navigate = useNavigate();
     const token = localStorage.getItem("token");
 
-    //Adding Post to MongoDB
+    //Adding Post
     const [createPost] = useCreatePostMutation()
 
     const CreatePostButtonClick = () => {
@@ -55,10 +53,23 @@ function CreatePost() {
               },
               () => {
                 // Handle successful uploads on complete
-                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                createPost({title, postText, img: downloadURL})  
+                getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+                const readTimeFormated = readTime + " mins"
+                const {error} = await createPost({title, postText, img: downloadURL, readTime: readTimeFormated})
+                if(error) {
+                  if (typeof error.data.error == "string" ) {
+                      setError(error.data.error)
+                  } else if (Object.values(error.data.error)[1]) {
+                      setError(`${Object.values(error.data.error)[0]} and ${Object.values(error.data.error)[1]}`)
+                  } else {
+                      setError(`${Object.values(error.data.error)[0]}`)
+                  }
+                  return
+                }
+
                 localStorage.removeItem("Title");
                 localStorage.removeItem("PostText");
+                localStorage.removeItem("ReadTime");
                 navigate('/')
                 });
               }
@@ -72,6 +83,7 @@ function CreatePost() {
     const Cancel = () => {
         localStorage.removeItem("Title");
         localStorage.removeItem("PostText");
+        localStorage.removeItem("ReadTime");
         navigate("/");
     }
 
@@ -79,7 +91,8 @@ function CreatePost() {
     useEffect(()=>{
         localStorage.setItem("Title" , title);
         localStorage.setItem("PostText" , postText);
-    },[title, postText]);
+        localStorage.setItem("ReadTime" , readTime);
+    },[title, postText, readTime]);
 
     
     //redirecting nonSignedIn users back to login if they try and access createPost Page

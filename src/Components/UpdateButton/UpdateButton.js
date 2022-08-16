@@ -6,20 +6,19 @@ import {useUpdateButtonDispatch}from '../../redux/redux-hooks';
 
 
 function UpdateButton({Post}) {
-  const {isEditsection} = useContext(HomePageContext);
-
-  const dispatch = useUpdateButtonDispatch();
+    const {isEditsection} = useContext(HomePageContext);
+    const dispatch = useUpdateButtonDispatch();
 
     return (
         <div>
             <button 
                   title="Update"
                   onClick={() => { 
-                  dispatch(updatePostID( Post._id))                          
+                  dispatch(updatePostID( Post.id))                          
                   isEditsection(true)       
                   //When users go to update section the Post's title and text will already be in the input elements.
                   //If user already updated the Post, when they click edit button again, showing them the updated values in input elements.
-                  dispatch(updateInputValue({newtitle: Post.title, newpostText: Post.postText}))                          
+                  dispatch(updateInputValue({newtitle: Post.title, newpostText: Post.postText, newreadTime: Number(Post.readTime.split(" ")[0])}))                          
               }}>&#128394;</button>
         </div>
     )

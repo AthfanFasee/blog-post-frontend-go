@@ -1,7 +1,7 @@
 import {configureStore} from '@reduxjs/toolkit';
 import updateInputValuesReducer from '../features/UpdateInputValues';
 import updatePostID from '../features/PostID';
-import updateUserIDParam from '../features/UserIDParam';
+import updateParams from '../features/Params';
 import UpdatePostReducer from '../features/UpdatedPost';
 import postsApi from '../services/PostsApi';
 import authApi from '../services/LoginPageApi';
@@ -14,7 +14,7 @@ export const store = configureStore({
       [likeAndCommentApi.reducerPath] : likeAndCommentApi.reducer,
       UpdatedInputValues: updateInputValuesReducer,
       PostID: updatePostID,
-      UserIDParam: updateUserIDParam,   
+      Params: updateParams,
       updatePost : UpdatePostReducer,
     },
     middleware: (getDefaultMiddleware) =>

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import LoginElements from '../../Components/LoginElements/LoginElements';
-import RegisterElements from '../../Components/RegisterElements/RegisterElements';
+import LoginElements from '../../Components/LoginForm/LoginForm';
+import RegisterElements from '../../Components/RegisterForm/RegisterForm';
 import {useContext} from 'react';
 import './Login.css';
 import { LoginPageContext } from '../../Helper/LoginPageContext/LoginPageProvider';
@@ -8,12 +8,12 @@ import {useLoginUserMutation, useRegisterUserMutation} from '../../services/Logi
 
 function Login() {
 
-    const {loginPassword, loginEmail, registerUserName, registerPassword, isRegister, registerEmail, setError} =
+    const {loginPassword, loginEmail, registerUserName, registerPassword, setIsRegister, isRegister, registerEmail, setError} =
      useContext(LoginPageContext);
 
     const navigate = useNavigate();
 
-    const [login, ] = useLoginUserMutation()
+    const [login] = useLoginUserMutation()
     const [register] = useRegisterUserMutation()
     
     localStorage.getItem('userInfo')
@@ -21,12 +21,19 @@ function Login() {
     const LoginUser = async () => {
         const {data, error} = await login({loginEmail, loginPassword})
         if(error) {
-            setError(error.data.msg)
+            if (typeof error.data.error == "string" ) {
+                setError(error.data.error)
+            } else if (Object.values(error.data.error)[1]) {
+                setError(`${Object.values(error.data.error)[0]} and ${Object.values(error.data.error)[1]}`)
+            } else {
+                setError(`${Object.values(error.data.error)[0]}`)
+            }
             return
-        }                    
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('userID', data.user.id);
-        localStorage.setItem('userName', data.user.name);           
+        }
+
+        localStorage.setItem('token', data.authentication_token.token);
+        localStorage.setItem('userID', data.authentication_token.userID);
+        localStorage.setItem('userName', data.userName);           
         navigate("/");
         window.location.reload();
     }
@@ -34,16 +41,19 @@ function Login() {
 
     //Register
     const RegisterUser = async () => {
-            const {data, error} = await register({registerEmail, registerPassword, registerUserName})
+            const {error} = await register({registerEmail, registerPassword, registerUserName})
             if(error) {
-                setError(error.data.msg)
+                if (typeof error.data.error == "string" ) {
+                    setError(error.data.error)
+                } else if (Object.values(error.data.error)[1]) {
+                    setError(`${Object.values(error.data.error)[0]} and ${Object.values(error.data.error)[1]}`)
+                } else {
+                    setError(`${Object.values(error.data.error)[0]}`)
+                }
                 return
-            }           
-            localStorage.setItem('token', data.token);
-            localStorage.setItem('userID', data.user.id);
-            localStorage.setItem('userName', data.user.name);           
-            navigate("/");
-            window.location.reload();
+            }
+            setError("Please check your email inbox to activate your account")
+            setIsRegister(false)
     }
 
     return (

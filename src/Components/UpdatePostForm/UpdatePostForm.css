@@ -22,7 +22,7 @@
   }
   
   .UpdatePostContainer h1 {
-    
+    margin-bottom: -5px;
     text-align: center;
     font-size: 40px;
   }
@@ -52,18 +52,20 @@
   }
   .EditImagendIcon{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
+    margin-top: -8px;
   }
   .EditImage{
     font-size: 22px !important;
     color:rgb(0, 0, 0);
-    margin-bottom: 0px !important;
+    margin-bottom: 5px !important;
+    cursor: pointer;
   }
   .EditImageIcon{
     margin-top: 0px;
-    font-size: 20px !important;
+    font-size: 22px !important;
   }
   .UpdatePostContainer button {
     font-family: 'Pacifico', cursive;

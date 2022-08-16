@@ -1,14 +1,14 @@
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import { useContext } from "react";
-import { HomePageContext } from "../../../Helper/HomePageContexts/HomePageProvider";
+import { useDispatch } from 'react-redux';
+import {updatePageParam} from '../../../features/Params';
 
 
 export default function Page({pageCount}) {
-  const {setPage} = useContext(HomePageContext);
+  const dispatch = useDispatch();
 
   const handleChange = (event, value) => {
-    setPage(value);
+    dispatch(updatePageParam(value))
   };
 
   

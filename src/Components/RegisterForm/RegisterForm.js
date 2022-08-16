@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { LoginPageContext } from '../../Helper/LoginPageContext/LoginPageProvider';
-import './RegisterElements.css';
+import './RegisterForm.css';
 
 
 function Register({RegisterUser}) {
@@ -24,7 +24,7 @@ function Register({RegisterUser}) {
         </div>
         <div className="RegInputContainer">
             <label>Password:</label>
-            <input placeholder="Password..." onChange={(event) => setRegisterPassword(event.target.value)}/>
+            <input placeholder="min 6 characters, max 72 characters" onChange={(event) => setRegisterPassword(event.target.value)}/>
         </div>
         <button onClick={RegisterUser}>Submit</button>
         <div className="RegisterText">

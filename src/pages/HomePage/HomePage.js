@@ -1,5 +1,5 @@
 import {useContext} from "react";
-import UpdatePost from "../../Components/UpdatePost/UpdatePost";
+import UpdatePostForm from "../../Components/UpdatePostForm/UpdatePostForm";
 import UserPosts from "../../Components/UserPosts/UserPosts";
 import { HomePageContext } from "../../Helper/HomePageContexts/HomePageProvider";
 import Pagination from '../../Components/HomePageComponents/Pagination/Pagination';
@@ -16,18 +16,20 @@ import {getStorage, ref, uploadBytesResumable, getDownloadURL} from "firebase/st
 
 function HomePage() {
 
-  const {setFile, file, sort, setSort, page, editsection, isEditsection} = useContext(HomePageContext);
+  const {setFile, file, editsection, isEditsection, setError} = useContext(HomePageContext);
 
   let UpdateInputValue = useSelector((state) => state.UpdatedInputValues.value);
-  const UserIDParam = useSelector((state) => state.UserIDParam.value);
+  let UserID = useSelector((state) => state.Params.value.userId);
+  const page = useSelector((state) => state.Params.value.page);
+  const sort = useSelector((state) => state.Params.value.sort);
 
   const token = localStorage.getItem('token');
 
    //Getting Posts from MongoDB when the HomePage Component is rendered
-  const { data : PostsList, isFetching } = useGetPostsQuery({page, sort, UserIDParam })
+  const { data : PostsList, isFetching } = useGetPostsQuery({page, sort, UserID}, { refetchOnArgChange: true })
     
-  //Updating the Post(Editing the Post)
-  const [triggerUpdatePost] = useUpdatePostMutation();
+  //Updating Post
+  const [UpdatePost] = useUpdatePostMutation();
   
   const updatePostButtonClick = async (PostID) => {
     if(file) {
@@ -58,9 +60,19 @@ function HomePage() {
         },
         () => {
           // Handle successful uploads on complete
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
           UpdateInputValue = {...UpdateInputValue, newImgURL:downloadURL };
-          triggerUpdatePost({PostID, UpdateInputValue}); 
+          const {error} = await UpdatePost({PostID, UpdateInputValue});
+          if(error) {
+            if (typeof error.data.error == "string" ) {
+                setError(error.data.error)
+            } else if (Object.values(error.data.error)[1]) {
+                setError(`${Object.values(error.data.error)[0]} and ${Object.values(error.data.error)[1]}`)
+            } else {
+                setError(`${Object.values(error.data.error)[0]}`)
+            }
+            return
+          }
           localStorage.removeItem("Title");
           localStorage.removeItem("PostText");
           setFile(null)
@@ -70,7 +82,17 @@ function HomePage() {
       );        
     } else {
       //If User didn't Upload a new Image
-      await triggerUpdatePost({PostID, UpdateInputValue});
+      const {error} = await UpdatePost({PostID, UpdateInputValue});
+      if(error) {
+        if (typeof error.data.error == "string" ) {
+            setError(error.data.error)
+        } else if (Object.values(error.data.error)[1]) {
+            setError(`${Object.values(error.data.error)[0]} and ${Object.values(error.data.error)[1]}`)
+        } else {
+            setError(`${Object.values(error.data.error)[0]}`)
+        }
+        return
+      }
       localStorage.removeItem("Title");
       localStorage.removeItem("PostText"); 
       isEditsection(false);  
@@ -81,18 +103,18 @@ function HomePage() {
     <div className="homePage">
 
       {/*Warning Users to SignIn when they are not SignedIn */}
-      {!token && <p>Please Login to Create Your Own Posts</p>} 
+      {!token && <p className="signInWarning">Please Login to Create Your Own Posts !!</p>} 
       
       {/* Sort Button */}
       {!editsection && 
       <div className="SortButtonContainer">
-      <SortButton setSort={setSort}/>
+      <SortButton/>
       </div>
       }
       
         
       {/* Page SetUp(Pagination) */}
-      {!editsection && <Pagination pageCount={PostsList?.noOfPages}/>}
+      {!editsection && <Pagination pageCount={PostsList?.metadata?.last_page}/>}
 
       <BackToTop />
 
@@ -103,7 +125,7 @@ function HomePage() {
       {/*Showing Posts when HomePage Component is Rendered */}
       {PostsList?.posts.map((post) => {
         return( 
-          <div key={post._id}>
+          <div key={post.id}>
           <UserPosts post={post}/>
           </div> 
          )
@@ -112,7 +134,7 @@ function HomePage() {
 
     {/* Rendering UpdatePost Component only when UpdateButton is clicked */}
     {editsection && 
-    <UpdatePost updatePostButtonClick={updatePostButtonClick}/>
+    <UpdatePostForm updatePostButtonClick={updatePostButtonClick}/>
     }  
     
     </div>)

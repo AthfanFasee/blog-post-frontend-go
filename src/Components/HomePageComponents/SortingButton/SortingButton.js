@@ -3,10 +3,13 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useState } from 'react';
 import './SortingButton.css';
+import {useDispatch} from 'react-redux';
+import {updateSortParam} from '../../../features/Params';
 
 
 
-export default function SortButton({setSort}) {
+export default function SortButton() {
+  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -19,15 +22,15 @@ export default function SortButton({setSort}) {
   }
   const Newest = () => {
     setAnchorEl(null);
-    setSort('-createdAt');
+    dispatch(updateSortParam("-id"));
   };
   const Oldest = () => {
     setAnchorEl(null);
-    setSort('createdAt');
+    dispatch(updateSortParam("id"));
   };
   const MostLiked = () => {
     setAnchorEl(null);
-    setSort('likesCount');
+    dispatch(updateSortParam("-likescount"));
   };
 
   return (

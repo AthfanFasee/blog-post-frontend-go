@@ -28,7 +28,7 @@ function DeleteButton({post}) {
       };
 
       const confirmDelete = async () => {
-        await deletePost(post._id)
+        await deletePost(post.id)
         setOpen(false);   
       }
 

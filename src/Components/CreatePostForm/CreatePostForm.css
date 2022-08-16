@@ -12,7 +12,7 @@
   }
   
   .cpContainer h1 {
-    
+    margin-bottom: -10px;
     text-align: center;
     font-size: 40px;
   }
@@ -40,19 +40,42 @@
   .inputGp textarea {
     height: 150px;
   }
-  .AddImagendIcon{
+  .TimeandImg{
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
+  }
+  .TimeandInput {
+    margin-top: 12px;
+    margin-right: auto;
+  }
+  .Time{
+    margin-top: 5px;
+    margin-right: 8px;
+    font-size: 22px !important;
+  }
+  .TimeInput{
+    width: 50px;
+    height: 25px;
+    margin-right: auto;
+    font-size: 18px;
+  }
+  .AddImagendIcon{
+    margin-top: -14px;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;  
   }
   .AddImage{
     margin-top: 0px;
     font-size: 22px !important;
-    color:rgb(0, 0, 0)
+    color:rgb(0, 0, 0);
+    cursor: pointer;
   }
   .AddImageIcon{
-    font-size: 20px !important;
+    font-size: 25px !important;
+    margin-top: 5px;
   }
   .hiddenInput{
     margin: 0;
@@ -118,6 +141,15 @@
     .inputGp textarea {
       height: 150px;
     }
+    .Time{
+      font-size: 20px !important;
+    }
+    .TimeInput{
+      width: 48px;
+      height: 23px;
+      margin-right: auto;
+      font-size: 17px;
+    }
     .AddImage{
       font-size: 20px !important;
       color:rgb(0, 0, 0)
@@ -178,6 +210,15 @@
     }
     .inputGp textarea {
       height: 100px;
+    }
+    .Time{
+      font-size: 18px !important;
+    }
+    .TimeInput{
+      width: 47px;
+      height: 22px;
+      margin-right: auto;
+      font-size: 16px;
     }
     .AddImage{
       font-size: 18px !important;
