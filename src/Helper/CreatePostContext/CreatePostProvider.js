@@ -15,8 +15,10 @@ export function CreatePostProvider({children}) {
      //to catch errors
      const [error, setError] = useState("");
     
+     // to block button click
+     const [blocked, setBlocked] = useState(false);
     return (
-        <CreatePostContext.Provider value={{file, setFile, title, setTitle, postText, setPostText, error, setError, readTime, setReadTime}}>
+        <CreatePostContext.Provider value={{setBlocked, blocked, file, setFile, title, setTitle, postText, setPostText, error, setError, readTime, setReadTime}}>
             {children}
         </CreatePostContext.Provider>
     )

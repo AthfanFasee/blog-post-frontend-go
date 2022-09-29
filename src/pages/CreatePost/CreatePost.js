@@ -16,7 +16,7 @@ import {
 
 function CreatePost() {
 
-    const { file, title, postText, readTime,  setError} = useContext(CreatePostContext);
+    const { file, title, postText, readTime,  setError, setBlocked} = useContext(CreatePostContext);
 
     const navigate = useNavigate();
     const token = localStorage.getItem("token");
@@ -25,6 +25,7 @@ function CreatePost() {
     const [createPost] = useCreatePostMutation()
 
     const CreatePostButtonClick = () => {
+        setBlocked(true);
         if(file) {
             //Getting Image Ready 
             const fileName = new Date().getTime() + file.name;
@@ -64,6 +65,7 @@ function CreatePost() {
                   } else {
                       setError(`${Object.values(error.data.error)[0]}`)
                   }
+                  setBlocked(false);
                   return
                 }
 
@@ -76,6 +78,7 @@ function CreatePost() {
             );      
         } else {
           setError('Please Provide an Image')
+          setBlocked(false);
         }      
     }
 

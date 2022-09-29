@@ -36,14 +36,16 @@ export default function ProfileButton() {
   };
 
   const myPostsButtonOnClick = () => {
-    dispatch(updateUserIDParam(userID))
     localStorage.setItem("OldPageValue", page);
+    dispatch(updateUserIDParam(`id=${userID}`));
     dispatch(updatePageParam(1))
+    triggerGetPostsQuery({page: 1, sort, UserIDParam: `id=${userID}`}, false)
   }
   const showAllPostsButtonOnClick = () => {
-    dispatch(updateUserIDParam(" "))
-    dispatch(updatePageParam(Number(localStorage.getItem("OldPageValue"))))
-    triggerGetPostsQuery({page, sort, UserIDParam}, {preferCacheValue: false})
+    dispatch(updateUserIDParam(""))
+    const oldPageValue = Number(localStorage.getItem("OldPageValue"))
+    dispatch(updatePageParam(oldPageValue))
+    triggerGetPostsQuery({page: oldPageValue, sort, UserIDParam: ""}, false)
     localStorage.removeItem("OldPageValue")
   }
 
@@ -109,13 +111,11 @@ export default function ProfileButton() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-       
 
-
-        {!UserIDParam && <MenuItem className="Menu" onClick={myPostsButtonOnClick}>
+        {(!UserIDParam || UserIDParam === " ") && <MenuItem className="Menu" onClick={myPostsButtonOnClick}>
           <LocalPostOfficeIcon className="PostsIcon" /> My Posts
         </MenuItem>}
-        {UserIDParam&&
+        {(UserIDParam && UserIDParam !== " ")&&
         <MenuItem className="Menu" onClick={showAllPostsButtonOnClick}>
         <LocalPostOfficeIcon className="PostsIcon" /> Show All Posts
         </MenuItem>

@@ -12,7 +12,7 @@ const postsApi = createApi({
   endpoints: (builder) => ({
 
     getPosts: builder.query({
-      query: ({page, sort, UserID}) => `/posts?page=${page}&sort=${sort}&id=${UserID}`,
+      query: ({page, sort, UserIDParam}) => `/posts?page=${page}&sort=${sort}&${UserIDParam}`,
       providesTags: ['Post'],
     }),
 

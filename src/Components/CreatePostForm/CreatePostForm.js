@@ -4,8 +4,7 @@ import './CreatePostForm.css';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 
 function CreatePostElmnts({Cancel, CreatePostButtonClick}) {
-    
-    const {file, setFile, title, setTitle, postText, readTime, setReadTime, setPostText, error} = useContext(CreatePostContext);
+    const {file, setFile, title, setTitle, postText, readTime, setReadTime, setPostText, error, blocked} = useContext(CreatePostContext);
 
     return (
         <div className="createPostPage">
@@ -36,7 +35,7 @@ function CreatePostElmnts({Cancel, CreatePostButtonClick}) {
                 </div>
             </div>
 
-            <button disabled={!title || !postText}  onClick={CreatePostButtonClick}>Submit Post</button>
+            <button disabled={!title || !postText || blocked}  onClick={CreatePostButtonClick}>Submit Post</button>
             <button onClick={Cancel}>Cancel</button>
             </div>
         </div>

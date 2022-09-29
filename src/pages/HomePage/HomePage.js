@@ -19,14 +19,14 @@ function HomePage() {
   const {setFile, file, editsection, isEditsection, setError} = useContext(HomePageContext);
 
   let UpdateInputValue = useSelector((state) => state.UpdatedInputValues.value);
-  let UserID = useSelector((state) => state.Params.value.userId);
+  const UserIDParam = useSelector((state) => state.Params.value.userId);
   const page = useSelector((state) => state.Params.value.page);
   const sort = useSelector((state) => state.Params.value.sort);
 
   const token = localStorage.getItem('token');
 
    //Getting Posts from MongoDB when the HomePage Component is rendered
-  const { data : PostsList, isFetching } = useGetPostsQuery({page, sort, UserID}, { refetchOnArgChange: true })
+  const { data : PostsList, isFetching } = useGetPostsQuery({page, sort, UserIDParam})
     
   //Updating Post
   const [UpdatePost] = useUpdatePostMutation();
