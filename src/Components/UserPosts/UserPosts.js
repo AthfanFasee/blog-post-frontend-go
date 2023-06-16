@@ -15,18 +15,16 @@ import DefaultPostImg from './DefaultPostImg.png';
 
 
 function UserPosts({post}) {
-    const userID = Number(localStorage.getItem('userID'));
-    const token = localStorage.getItem('token');
-
     //Either Updated Post or Default Post is saved here to live render when post is edited
     const [Post, setPost] = useState(post);
 
     const [commentData, setCommentData] = useState("");
-  
     const [commentInput, setCommentInput] = useState("");
-
     //to Render Comments Section
     const [isComments, setIsComments] = useState(false);
+
+    const userID = Number(localStorage.getItem('userID'));
+    const token = localStorage.getItem('token');
     
     //Modifying Time
     let time = Post.createdAt.split('T').join(', ');

@@ -15,6 +15,8 @@ import {updateUserIDParam, updatePageParam} from '../../../features/Params';
 import {useLazyGetPostsQuery} from '../../../services/PostsApi';
 
 export default function ProfileButton() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  
   const dispatch = useDispatch();
 
   const UserIDParam = useSelector((state) => state.Params.value.userId);
@@ -26,7 +28,6 @@ export default function ProfileButton() {
   const userID = localStorage.getItem('userID');
   const userName = localStorage.getItem('userName');
   
-  const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);

@@ -9,8 +9,10 @@ import {updateSortParam} from '../../../features/Params';
 
 
 export default function SortButton() {
-  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
+  
+  const dispatch = useDispatch();
+  
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
