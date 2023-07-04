@@ -27,7 +27,7 @@ function HomePage() {
 
    //Getting Posts from MongoDB when the HomePage Component is rendered
   const { data : PostsList, isFetching } = useGetPostsQuery({page, sort, UserIDParam})
-    
+
   //Updating Post
   const [UpdatePost] = useUpdatePostMutation();
   

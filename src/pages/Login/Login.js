@@ -52,7 +52,6 @@ function Login() {
                 }
                 return
             }
-            setError("Please check your email inbox to activate your account")
             setIsRegister(false)
     }
 
