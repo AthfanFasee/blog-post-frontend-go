@@ -5,14 +5,14 @@ import './RegisterForm.css';
 
 function Register({RegisterUser}) {
 
-    const {setRegisterUserName, setRegisterPassword, setIsRegister, setRegisterEmail, error, setError} =
+    const {setRegisterUserName, setRegisterPassword, setIsRegister, setRegisterEmail, registerError, setRegisterError} =
      useContext(LoginPageContext)
 
     return (
     <div className="RegisterMainContainer">
         <div className="RegisterrContainer">
         <h1>Register Here</h1>   
-       {error && <h3 className="Regerror">{`!! ${error}`}</h3>}  
+       {registerError && <h3 className="Regerror">{`!! ${registerError}`}</h3>}  
 
         <div className="RegInputContainer">
             <label>Email:</label>
@@ -31,7 +31,7 @@ function Register({RegisterUser}) {
             <p>Already Registered?</p>
         <button onClick={() => {
             setIsRegister(false)
-            setError("")
+            setRegisterError("")
             }} className="LoginButton">Login Here</button>
         </div>
         </div>

@@ -4,14 +4,14 @@ import './LoginForm.css';
 
 function LoginButton({LoginUser}) {
     
-    const {setError, error, setIsRegister, setLoginEmail, setLoginPassword } =
+    const {setLoginError, loginError, setIsRegister, setLoginEmail, setLoginPassword } =
      useContext(LoginPageContext);
 
     return (
         <div className="MainContainer">
         <div className="LogInContainer">
         <h1>Login with your Email</h1>
-        {error ? <h3 className="error">{`!! ${error}`}</h3> : <h3 className="info">{`Use your email and password to login`}</h3>}
+        {loginError ? <h3 className="error">{`!! ${loginError}`}</h3> : <h3 className="info">{`Use your email and password to login`}</h3>}
         
         <div className="LoginInput">
             <label>Email:</label>
@@ -26,7 +26,7 @@ function LoginButton({LoginUser}) {
             <p className="LoginText">Don't have an account?</p>
         <button onClick={() => {
             setIsRegister(true)
-            setError("")
+            setLoginError("")
             }} className="Register">Register Here</button>
         </div>
         </div>

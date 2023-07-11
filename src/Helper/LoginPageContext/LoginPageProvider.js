@@ -19,12 +19,13 @@ export function LoginPageProvider({children}) {
     const [loginPassword, setLoginPassword] = useState("");
 
     //to catch errors
-    const [error, setError] = useState("");
+    const [registerError, setRegisterError] = useState("");
+    const [loginError, setLoginError] = useState("");
 
     
     
     return (
-        <LoginPageContext.Provider value={{setLoginPassword, loginPassword, setLoginEmail, loginEmail, setRegisterUserName, registerUserName, setRegisterPassword, registerPassword, isRegister, setIsRegister, registerEmail, setRegisterEmail, error, setError}}>
+        <LoginPageContext.Provider value={{loginError, setLoginError, setLoginPassword, loginPassword, setLoginEmail, loginEmail, setRegisterUserName, registerUserName, setRegisterPassword, registerPassword, isRegister, setIsRegister, registerEmail, setRegisterEmail, registerError, setRegisterError}}>
             {children}
         </LoginPageContext.Provider>
     )
