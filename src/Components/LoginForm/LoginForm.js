@@ -11,7 +11,7 @@ function LoginButton({LoginUser}) {
         <div className="MainContainer">
         <div className="LogInContainer">
         <h1>Login with your Email</h1>
-        {error && <h3 className="error">{`!! ${error}`}</h3>}
+        {error ? <h3 className="error">{`!! ${error}`}</h3> : <h3 className="error">{`Use your email and password to login`}</h3>}
         
         <div className="LoginInput">
             <label>Email:</label>
