@@ -8,7 +8,7 @@ import {useLoginUserMutation, useRegisterUserMutation} from '../../services/Logi
 
 function Login() {
 
-    const {loginPassword, loginEmail, registerUserName, registerPassword, setIsRegister, isRegister, registerEmail, setError} =
+    const {loginPassword, loginEmail, registerUserName, registerPassword, setIsRegister, isRegister, registerEmail, setRegisterError, setLoginError} =
      useContext(LoginPageContext);
 
     const navigate = useNavigate();
@@ -22,11 +22,11 @@ function Login() {
         const {data, error} = await login({loginEmail, loginPassword})
         if(error) {
             if (typeof error.data.error == "string" ) {
-                setError(error.data.error)
+                setLoginError(error.data.error)
             } else if (Object.values(error.data.error)[1]) {
-                setError(`${Object.values(error.data.error)[0]} and ${Object.values(error.data.error)[1]}`)
+                setLoginError(`${Object.values(error.data.error)[0]} and ${Object.values(error.data.error)[1]}`)
             } else {
-                setError(`${Object.values(error.data.error)[0]}`)
+                setLoginError(`${Object.values(error.data.error)[0]}`)
             }
             return
         }
@@ -44,11 +44,11 @@ function Login() {
             const {error} = await register({registerEmail, registerPassword, registerUserName})
             if(error) {
                 if (typeof error.data.error == "string" ) {
-                    setError(error.data.error)
+                    setRegisterError(error.data.error)
                 } else if (Object.values(error.data.error)[1]) {
-                    setError(`${Object.values(error.data.error)[0]} and ${Object.values(error.data.error)[1]}`)
+                    setRegisterError(`${Object.values(error.data.error)[0]} and ${Object.values(error.data.error)[1]}`)
                 } else {
-                    setError(`${Object.values(error.data.error)[0]}`)
+                    setRegisterError(`${Object.values(error.data.error)[0]}`)
                 }
                 return
             }

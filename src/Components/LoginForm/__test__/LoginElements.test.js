@@ -7,14 +7,14 @@ import { LoginPageContext } from '../../../Helper/LoginPageContext/LoginPageProv
 
 const mockedFunction= jest.fn();
 const setIsRegister= jest.fn();
-const setError= jest.fn();
+const setLoginError= jest.fn();
 const setLoginEmail= jest.fn();
 const setLoginPassword= jest.fn();
 describe('LoginElements', () => {
 
     beforeEach(() => {
         // eslint-disable-next-line testing-library/no-render-in-setup
-        render(<LoginPageContext.Provider value={{setError, setIsRegister, setLoginEmail, setLoginPassword}}>
+        render(<LoginPageContext.Provider value={{setLoginError, setIsRegister, setLoginEmail, setLoginPassword}}>
             <LoginElements LoginUser={mockedFunction}/></LoginPageContext.Provider>);
     })
 
@@ -61,7 +61,7 @@ describe('LoginElements', () => {
         it('should call setIsRegister function onClick', () => {
             userEvent.click(screen.getByRole('button', {name: /Register Here/i}));
             expect(setIsRegister).toBeCalled();
-            expect(setError).toBeCalled();
+            expect(setLoginError).toBeCalled();
         })
     })
 })
