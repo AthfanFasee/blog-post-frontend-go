@@ -1,6 +1,8 @@
 # My Blog Posts Platform (Front-End)
 Developed a blogging platform with post creation, management, and image upload features. The platform provides diverse sorting options and pagination along with registration and login process. State management is handled using Redux Toolkit and Context API. Users can like and comment in real-time. API calls are handled using RTK Query with data caching for improved loading speeds. Developed following the TDD practice using Jest.
 
+## Technologies Used
+React, Redux Toolkit, MUI, Sass
 
 ## Available Scripts
 In the project directory, you can run:
