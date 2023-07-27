@@ -107,6 +107,11 @@
     font-size: 20px;
    
   }
+
+  .info{
+    margin-top: 7px;
+    font-size: 18px;
+  }
   
   .LogInContainer label {
     margin-top: 10px;
@@ -178,6 +183,10 @@
   color: rgb(129, 19, 19);
 }
 
+.info{
+  margin-top: 7px;
+  font-size: 15px;
+}
 
 .LogInContainer label {
   margin-top: 10px;
